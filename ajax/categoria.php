@@ -34,7 +34,7 @@ switch(_GET[""op]){
 
     break;
 
-    case 'desactive':
+    case 'desactivate':
 
             $response=$categoria->desactivate($idcategoria);
             echo $response ? "Categoria desactivada" : "Categoria no se puede desactivar";          
@@ -47,14 +47,39 @@ switch(_GET[""op]){
             echo $response ? "Categoria activada" : "Categoria no se puede activar";          
             break;
 
-
     break;
        
     case 'show':
-        break;
+
+            $response=$categoria->show($idcategoria);
+            echo json_encode($response);
+            break;
+
+    break;
         
     case 'list':
-        break;
+
+            $response=$categoria->list();
+            $data=Array();
+
+
+            while($resp=$response->fetch_object()){
+
+                $data[]=array(
+                    "0"=>$resp->$idcategoria,
+                    "1"=>$resp->$nombre,
+                    "2"=>$resp->$descripcion,
+                    "3"=>$resp->$condicion,
+                );
+            }
+
+            $result=array(
+                "echo"=>1,
+                "totalrecords"=>count($data),
+                "itotalDisplay"=>count($data),
+            );
+
+    break;
         
         
 

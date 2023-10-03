@@ -24,7 +24,7 @@ class Categoria{
     }
     
     //Funcion para desactivar categoria
-    public funcion deactivate($idcategoria){
+    public funcion desactivate($idcategoria){
 
         $sql="UPDATE categoria SET condicion='0' WHERE idcategoria='$idcategoria'";
         return executeQuery($sql);
