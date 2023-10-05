@@ -13,11 +13,11 @@ function init(){
 
 
 //Funcion para limpiar input
-function limpia(){
+function limpiar(){
 
-    $(#nombre).val("");
-    $(#descripcion).val("");
-    $(#categoria).val("");
+    $('#nombre').val("");
+    $('#descripcion').val("");
+    $('#categoria').val("");
 
 }
 
@@ -56,9 +56,10 @@ function listar(){
 
     tabla=$('#tablalistado').dataTable({
 
+
         "aProcessing": true, // Avtivamos el procesamiento del datatables 
         "aServerSide": true, // Paginacion y filtrado realizados por el servidor 
-            dom: 'Bfrtip',       // Definimos los elementos del control de la tabla 
+            dom: 'Bfrtip',   // Definimos los elementos del control de la tabla 
 
 
             buttons: [
@@ -73,14 +74,15 @@ function listar(){
 
                 url: '../ajax/categoria.php?op=listar',
                 type : "get",
-                dataTyoe : "json",
-                error: funcion(e){
+                dataType : "json",
+                error: function(e){
                     console.log(e.responseText); 
                 }
             }, 
 
-
-
+            "bDestroy": true,
+            "iDisplayLength": 5, //paginacion
+            "order": [[ 0, "desc" ]] //Ordenar (columna,orden)
     }).DataTable(); 
 
 

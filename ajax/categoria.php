@@ -2,7 +2,7 @@
 
 
 
-require_once "../modelos/categortia.php";
+require_once "../modelos/categoria.php";
 
 
 $categoria= new Categoria();
@@ -14,7 +14,7 @@ $nombre=isset($_POST["nombre"]) ? cleanChain($_POST["nombre"]) : "";
 $descripcion=isset($_POST["descripcion"]) ? cleanChain($_POST["descripcion"]) : "";
 
 
-switch(_GET[""op]){
+switch(_GET["op"]){
 
     case 'guardareditar':
         if(empty($idcategoria)){
@@ -34,37 +34,38 @@ switch(_GET[""op]){
 
     break;
 
-    case 'desactivate':
+    case 'desactivar':
 
-            $response=$categoria->desactivate($idcategoria);
+            $response=$categoria->desactivar($idcategoria);
             echo $response ? "Categoria desactivada" : "Categoria no se puede desactivar";          
             break;
     break;
         
-    case 'active':
+    case 'activar':
 
-            $response=$categoria->active($idcategoria);
+            $response=$categoria->activar($idcategoria);
             echo $response ? "Categoria activada" : "Categoria no se puede activar";          
             break;
 
     break;
        
-    case 'show':
+    case 'mostrar':
 
-            $response=$categoria->show($idcategoria);
+            $response=$categoria->mostrar($idcategoria);
             echo json_encode($response);
             break;
 
     break;
         
-    case 'list':
+    case 'listar':
 
-            $response=$categoria->list();
+            $response=$categoria->listar();
+
             $data=Array();
 
 
             while($resp=$response->fetch_object()){
-
+                
                 $data[]=array(
                     "0"=>$resp->$idcategoria,
                     "1"=>$resp->$nombre,

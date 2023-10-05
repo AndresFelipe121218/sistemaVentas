@@ -2,6 +2,7 @@
 
 
 require_once "../configuracion/conexion.php";
+require_once "../configuracion/global.php";
 
 class Categoria{
 
